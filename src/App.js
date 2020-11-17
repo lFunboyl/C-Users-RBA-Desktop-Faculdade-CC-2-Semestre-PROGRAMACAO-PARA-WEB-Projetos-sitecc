@@ -1,18 +1,30 @@
-import React from 'react'
-import { createMuiTheme, responsiveFontSizes, MuiThemeProvider } 
-from '@material-ui/core'
-/* consulte as cores em https://www.materialpalette.com */
-import { orange, lightBlue, blue, deepOrange } from '@material-ui/core/colors'
-import CssBaseline from '@material-ui/core/CssBaseline'
-
+import React from "react";
+import { createMuiTheme, responsiveFontSizes, MuiThemeProvider }
+  from '@material-ui/core'
+/* cores */
+import {
+  orange,
+  lightBlue,
+  blue,
+  deepOrange,
+  purple,
+  cyan,
+  teal,
+  indigo
+} from "@material-ui/core/colors";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Rotas from './rotas'
 
+
+
 function App() {
+
   const temaDark = true
   const tipoPaleta = temaDark ? 'dark' : 'light'
-  const corPrimaria = temaDark ? orange[500] : blue[500]
-  const corSecundaria = temaDark ? deepOrange[900] : lightBlue[400]
+  const corPrimaria = temaDark ? indigo[400] : blue[500]
+  const corSecundaria = temaDark ? teal[500] : lightBlue[500]
 
+  //consulte as paletas de cores em https://www.materialpalette.com
   let theme = createMuiTheme(
     {
       palette: {
@@ -24,16 +36,17 @@ function App() {
           main: corSecundaria
         }
       }
-    }
-  )
+    })
+
+
   theme = responsiveFontSizes(theme)
 
   return (
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme} >
       <CssBaseline />
       <Rotas />
     </MuiThemeProvider>
   )
 }
 
-export default App
+export default App;

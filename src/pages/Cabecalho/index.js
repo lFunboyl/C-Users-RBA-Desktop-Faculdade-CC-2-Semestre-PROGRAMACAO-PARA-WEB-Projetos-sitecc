@@ -1,87 +1,111 @@
-// cSpell:Ignore Cabecalho, secoes, servicos, secao
-import React from 'react'
-import AppBar from '@material-ui/core/AppBar'
-import ApartmentIcon from '@material-ui/icons/Apartment'
-import Typography from '@material-ui/core/Typography'
-import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import Link from '@material-ui/core/Link'
-import { useHistory } from 'react-router-dom'
+// cSpell:Ignore Cabecalho, secoes, servicos
+import React from 'react';
+import { useHistory } from "react-router-dom"
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+
+import ComputerIcon from '@material-ui/icons/Computer';
+import LockedOutlinedIcon from '@material-ui/icons/LockOutlined'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+
 
 const useStyles = makeStyles((theme) => ({
-    toolbarTitle: {
-        flex: 1
-    },
-    toolbarSecundaria: {
-        justifyContent: 'space-between'
-    },
-    toolbarLink: {
-        padding: theme.spacing(1)
-    }
-}))
+  toolbarTitle: {
+    flex: 1     
+  },
+  toolbarSecondary: {
+    justifyContent: 'space-between',
+    backgroundColor: theme.palette.secondary.main
+   
+  },
+  toolbarLink: {
+    padding: theme.spacing(1),
+    flexShrink: 0,
+    color: '#FFFFFF'
+  },
+}));
 
-const Cabecalho = () => {
-    const titulo = 'Empresa Delta'
-    const secoes = [
-        { titulo: 'Produtos', url: '/produtos' },
-        { titulo: 'Serviços', url: '/servicos' },
-        { titulo: 'SAC', url: '/sac' },
-        { titulo: 'FAQ', url: '/faq' },
-        { titulo: 'Área reservada', url: '/login' },
-    ]
-    const classes = useStyles()
-    const history = useHistory()
-    return (
-        <>
-            <AppBar position="relative">
-                <Toolbar>
-                    <ApartmentIcon />
-                    <Typography
-                        component="h1"
-                        color="inherit"
-                        align="center"
-                        noWrap
-                        className={classes.toolbarTitle}
-                    >
-                        {titulo}
-                    </Typography>
-                    {localStorage.getItem("logado") !== btoa(process.env.REACT_APP_USER)
-                        ? <Button variant="contained"
-                            color="secondary"
-                            size="small"
-                            href="/login">
-                            Login
-                    </Button>
-                        : <Button variant="contained"
-                            color="primary"
-                            size="small"
-                            onClick={() => {
-                                localStorage.removeItem("logado")
-                                history.push('/login')
-                            }}
-                        >Logout </Button>
-                    }
-                </Toolbar>
-            </AppBar>
-            {localStorage.getItem("logado") !== btoa(process.env.REACT_APP_USER) &&
-                <Toolbar component="nav" variant="dense" className={classes.toolbarSecundaria}>
-                    {secoes.map((secao) => (
-                        <Link
-                            color="secondary"
-                            variant="body2"
-                            noWrap
-                            key={secao.titulo}
-                            href={secao.url}
-                            className={classes.toolbarLink}
-                        >
-                            {secao.titulo}
-                        </Link>
-                    ))}
-                </Toolbar>
-            }
-        </>
-    )
+const Cabecalho = (params) => {
+  const classes = useStyles();
+  const history = useHistory() //redirecionar a página
+  const secoes = [
+    { titulo: 'Produtos', url: '#/produtos' },
+    { titulo: 'Serviços', url: '#/servicos' },
+    { titulo: 'SAC', url: '#/sac' },
+    { titulo: 'FAQ', url: '#/faq' },
+    { titulo: 'Área Reservada', url: '#/login' }
+  ]
+
+  const titulo = 'RR TECH'
+
+   return (
+    <React.Fragment>
+        <AppBar position="relative">
+      <Toolbar>
+        <ComputerIcon />
+        <Typography
+          component="h1"
+          color="inherit"
+          align="center"
+          noWrap
+          className={classes.toolbarTitle}
+        >
+          {titulo}
+        </Typography>
+        {localStorage.getItem("logado") !== btoa(process.env.REACT_APP_USER)
+        ? <Button variant="contained"
+                startIcon={<LockedOutlinedIcon/>}
+                color="secondary" 
+                size="small"
+                href="#/login"
+                >
+          Login
+        </Button>
+        :
+        <Button variant="contained"
+                startIcon={<ExitToAppIcon/>}
+                color="secondary" 
+                size="small"
+                onClick={() => {
+                  localStorage.removeItem("logado")
+                  history.push("#/login")
+                }}
+                >
+          Logout
+        </Button>
+        }
+        
+      </Toolbar>
+      </AppBar>
+      {/* dense indica ajuste no espaço vertical */}
+      {localStorage.getItem("logado") !== btoa(process.env.REACT_APP_USER) &&
+      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
+        {secoes.map((section) => (
+          <Link
+            color="secondary"
+            noWrap
+            key={section.titulo}
+            variant="body2"
+            href={section.url}
+            className={classes.toolbarLink}
+          >
+            {section.titulo}
+          </Link>
+        ))}
+      </Toolbar>
+      }
+    </React.Fragment>
+  );
 }
 
 export default Cabecalho
+
+Cabecalho.propTypes = {
+  secoes: PropTypes.array,
+  titulo: PropTypes.string,
+};

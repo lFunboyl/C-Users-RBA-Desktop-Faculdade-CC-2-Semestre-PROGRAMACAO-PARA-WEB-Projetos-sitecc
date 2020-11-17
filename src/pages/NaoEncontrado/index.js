@@ -1,33 +1,43 @@
-import React from 'react'
-import Typography from '@material-ui/core/Typography'
+// cSpell:Ignore botao
+import React from 'react';
+import DesktopAccessDisabledIcon from '@material-ui/icons/DesktopAccessDisabled';
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
-import { makeStyles } from '@material-ui/core/styles'
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied'
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
     paper: {
         margin: theme.spacing(10),
         padding: theme.spacing(5),
-        alignItems: 'center'
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
     },
     botao: {
         marginTop: theme.spacing(10)
     }
-}))
+}
+)
+)
 
-export default function NaoEncontrado(){
-    const classes = useStyles() // estilos no Material-UI
+export default function NaoEncontrado() {
+    const classes = useStyles() //estilos do Material-UI
     return (
-        <Paper elevation={3} className={classes.paper}>
-            <Typography variant="h3" color="primary">
-                <SentimentVeryDissatisfiedIcon fontSize='large' />
-                Página Não Encontrada! 
+        <>
+            <Paper elevation={3} className={classes.paper}>
+                <Typography variant="h3" color="primary">
+                    <DesktopAccessDisabledIcon fontSize='large' /> Página não encontrada!
             </Typography>
-            <Button className={classes.botao}
-                href="/"
-                variant="contained"
-                color="primary">Voltar para o Início</Button>
-        </Paper>
+                <Button
+                    href="/"
+                    variant="contained"
+                    color="primary"
+                    className={classes.botao}
+                >
+                    Voltar para o início
+                </Button>
+            </Paper>
+        </>
     )
-}       
+}

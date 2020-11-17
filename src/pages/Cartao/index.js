@@ -1,3 +1,4 @@
+//cSpell:Ignore cartao  
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,42 +10,45 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: '100%',
-  },
-  media: {
-    height: 500,
-  },
+    cartao: {
+        width: '100%',
+       
+    },
+    media: {
+        height: 500
+
+    }    
 });
 
-export default function MediaCard() {
-  const classes = useStyles();
+export default function Cartao() {
+    const classes = useStyles();
 
-  return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://source.unsplash.com/featured/?landscape,city"
-          title="Seja Bem Vindo!"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Empresa Delta
+    return (
+        
+            <Card className={classes.cartao}>
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                        image="https://images.unsplash.com/photo-1498409785966-ab341407de6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1960&q=80"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                             Nosso objetivo
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            A empresa Delta é....
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            RR Tech tem como objetivo garantir a total satisfação do cliente.
           </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Compartilhar
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary" variant="outlined">
+                        Compartilhe
         </Button>
-        <Button size="small" color="primary">
-          Saiba Mais
+                    <Button size="small" color="secondary" variant="outlined">
+                        Saiba Mais
         </Button>
-      </CardActions>
-    </Card>
-  );
+                </CardActions>
+            </Card>
+       
+    );
 }

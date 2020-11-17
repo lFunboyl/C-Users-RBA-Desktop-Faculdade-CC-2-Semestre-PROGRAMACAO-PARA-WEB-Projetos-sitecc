@@ -1,15 +1,15 @@
-// cSpell:Ignore Cabecalho, Cartao
+// cSpell:Ignore Cabecalho, secoes, servicos, Cartao
 import React from 'react'
 import Cabecalho from '../Cabecalho'
 import Cartao from '../Cartao'
 
-function Inicio(){
+function Inicio() {     
     return(
-        <div>
-           <Cabecalho/>
-           <Cartao /> 
-        </div>
+     <div>
+        <Cabecalho />
+        <Cartao />
+      </div>
     )
-
 }
+
 export default Inicio
